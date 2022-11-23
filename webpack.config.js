@@ -65,7 +65,7 @@ module.exports = {
     hot: true,
     static: {
       //specifies where to serve static content from
-      directory: path.join(__dirname, "src"),
+      directory: path.join(__dirname, "public"),
       //specifies at which URL to serve static directory (public) content
       publicPath: "/",
     },
