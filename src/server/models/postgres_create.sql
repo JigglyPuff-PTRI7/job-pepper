@@ -25,7 +25,7 @@ CREATE TABLE "public".Activities (
   goal INTEGER NULL
 );
 
-SELECT * FROM  Activities; -- GOOD
+-- SELECT * FROM  Activities; -- GOOD
 
 CREATE TABLE "public".Resources (
   pk_resources_id serial PRIMARY KEY,
@@ -37,4 +37,4 @@ CREATE TABLE "public".Resources (
 FOREIGN KEY (fk_activity_id) REFERENCES Activities(pk_activity_id) ON DELETE CASCADE 
 );
 
-SELECT * FROM Resources; -- GOOD
+-- SELECT * FROM Resources; -- GOOD
