@@ -6,8 +6,8 @@ import Dashboard from "./Dashboard";
 const Navbar = () => {
   return (
     <>
-      <Link to='/'>Login</Link>
-      <Link to='/Dashboard'>Dashboard</Link>
+      <Link to='/'>-Login</Link><br/>
+      <Link to='/Dashboard'> - Protected Page Dashboard</Link><br/>
       {/* if user is logged in, show logout button */}
    </>
   );

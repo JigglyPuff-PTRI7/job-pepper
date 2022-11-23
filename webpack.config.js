@@ -3,7 +3,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: "./src/index.jsx",
   output: {
     filename: "build.js",
     path: path.resolve(__dirname, "build"),
@@ -56,7 +56,8 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx"],
+    extensions: [".js", ".jsx"],
+    // extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
   devServer: {
     //specifies host to use

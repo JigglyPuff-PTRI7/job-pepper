@@ -1,6 +1,6 @@
 import React from "react";
 import Dashboard from "./components/Dashboard";
-import Login from "./components/Login";
+import Login from "./components/Login.jsx";
 import Navbar from "./components/Navbar";
 import "./stylesheets/app.css";
 import { Route, Routes } from "react-router-dom";
