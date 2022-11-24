@@ -5,13 +5,19 @@ import ActivityAccordion from "./dashboard_components/ActivityAccordion";
 import GraphView from "./dashboard_components/GraphView";
 
 
-const Dashboard = () => {
-  const sampleActivities = [
-    'Practice Algos',
-    'Read Tech News',
-    'Activity 3',
-    'Activity 4',
-  ];
+const Dashboard = ({ user, setUser }) => {
+    const { name, email } = { user }
+    const activities = user.activities
+
+    console.log('user', user)
+    console.log('activities', activities)
+    
+        // const sampleActivities = [
+    //     'Practice Algos',
+    //     'Read Tech News',
+    //     'Activity 3',
+    //     'Activity 4',
+    // ];
 
   const sampleTimeLog = [];
 
@@ -31,7 +37,7 @@ const Dashboard = () => {
       </Container>
       <Container>
         <Box sx={{ width: '90%' }}>
-       <ActivityAccordion activities={sampleActivities}/>
+       <ActivityAccordion activitiesProps={activities}/>
         </Box>
       </Container>
     </div>

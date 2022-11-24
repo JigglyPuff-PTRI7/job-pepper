@@ -1,12 +1,16 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TimePicker from './TimePicker';
+import { Link } from '@mui/icons-material';
 
-export default function ActivityAccordion({ activities }) {
+export default function ActivityAccordion({ activitiesProps }) {
+  console.log('activitiesProps', activitiesProps)
+  const [activities, setActivities] = useState(activitiesProps);
+
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -14,9 +18,41 @@ export default function ActivityAccordion({ activities }) {
   };
 
   let accordionSet = [];
-  activities.map((activity, i)=>{
+
+  //for every activity the user has, create an accordion
+  activities.map((activityObj, i)=>{
+    //activity is an object in the activities array
+    //need to pull out the activity name, logged hours, goal, and resources
+    const activityName = activityObj.activity;
+    const { totalHours, loggedHours, goal, resources } = activityObj 
+
+    //panel for giving each panel unique labeling
     const panelNum = `panel${i+1}`;
-    
+
+    //update the supporting text with goal information
+    let goalText = "";
+    (goal && loggedHours) ?  goalText = `Completed ${totalHours} of ${goal} hours`
+    : goalText = "Goal not set... set a goal (make this a link)"
+
+    //create a list of resources to render
+    const resourceList = [];
+    if (resources) {
+    resources.map((resourceObj, i)=>{
+      console.log('resourceObj', resourceObj)
+      resourceList.push(
+        <li key={i}>
+          <Link href={resourceObj.url} underline="none">
+            {resourceObj.resource_name}
+          </Link>
+        </li>
+      );
+    })
+  } else { 
+    resourceList.push("You haven't added any resources.")
+
+  } 
+    console.log('resrouce list', resourceList)
+
     accordionSet.push(
       <Accordion
         expanded={expanded === panelNum}
@@ -27,15 +63,16 @@ export default function ActivityAccordion({ activities }) {
           aria-controls={`${panelNum}bh-content`}
           id={`${panelNum}bh-header`}
         >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            {activity}
+          <Typography sx={{fontWeight: 'bold', width: '33%', flexShrink: 0 }}>
+            {activityName}
           </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>Goal not set</Typography>
+          <Typography sx={{ color: 'text.secondary', fontStyle:'italic'}}>{goalText}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>Log your progress:</Typography>
           <TimePicker />
-          <Typography>List resouces here</Typography>
+          <Typography>Resources</Typography>
+          <ul>{resourceList}</ul>
         </AccordionDetails>
       </Accordion>
     )
