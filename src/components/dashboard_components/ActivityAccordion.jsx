@@ -6,24 +6,52 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TimePicker from './TimePicker';
 
-export default function ActivityAccordion({ activity, index }) 
-{
-  const panel = `panel${index + 1}`;
+export default function ActivityAccordion({ activities }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  return (
-    <div>
+  let accordionSet = [];
+  activities.map((activity, i)=>{
+    const panelNum = `panel${i+1}`;
+    
+    accordionSet.push(
       <Accordion
-        expanded={expanded === `panel${index + 1}`}
-        onChange={handleChange(`panel${index + 1}`)}
+        expanded={expanded === panelNum}
+        onChange={handleChange(panelNum)}
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content" 
+          aria-controls={`${panelNum}bh-content`}
+          id={`${panelNum}bh-header`}
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>
+            {activity}
+          </Typography>
+          <Typography sx={{ color: 'text.secondary' }}>Goal not set</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>Log your progress:</Typography>
+          <TimePicker />
+          <Typography>List resouces here</Typography>
+        </AccordionDetails>
+      </Accordion>
+    )
+    }
+    )
+    console.log(accordionSet)
+  return (
+    <div>
+      {accordionSet}
+      {/* <Accordion
+        expanded={expanded === `panel${index+1}`}
+        onChange={handleChange(`panel${index+1}`)}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
@@ -36,7 +64,7 @@ export default function ActivityAccordion({ activity, index })
           <Typography>Render time input here </Typography>
           <Typography>List resouces here</Typography>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
       {/* <Accordion
         expanded={expanded === 'panel2'}
         onChange={handleChange('panel2')}

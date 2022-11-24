@@ -25,7 +25,7 @@ const Dashboard = () => {
       </Container>
       <Container>
         <Box sx={{ width: '90%' }}>
-          {sampleActivities.map((el, i)=><ActivityAccordion key={el} activity={el} index={i}/>)}
+       <ActivityAccordion activities={sampleActivities}/>
         </Box>
       </Container>
     </div>
