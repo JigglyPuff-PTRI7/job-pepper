@@ -76,12 +76,19 @@ export default function App() {
   return (
     <div className="app">
       <Container maxWidth="md">
-        <Paper elevation={8} sx={{ padding:'30px' }}>
+        <Paper elevation={8}>
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard user={existingUser} setUser={setExistingUser}/>} />
-          </Routes>
+          <Container sx={{padding: '25px'}}>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <Dashboard user={existingUser} setUser={setExistingUser} />
+                }
+              />
+            </Routes>
+          </Container>
         </Paper>
       </Container>
     </div>
