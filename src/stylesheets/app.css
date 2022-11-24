@@ -1,0 +1,68 @@
+:root {
+  /* bright red -- MUI 'primary' color */
+  --bright-red-color: #FE0034;
+
+  /* deep-red */
+  --deep-red-color: #C00037;
+
+  /* brown --MUI 'secondary' color */
+  --brown-color: #5E3A40;
+
+  /* green -- MUI 'success' color*/
+  --green-color: #869F1C;
+
+  /* yellow  -- MUI 'warning' color*/
+  --yellow-color: #D9D36A; 
+
+  /* tan -- MUI 'info' color*/
+  --tan-color: #E2C6AE;
+
+  --font-sans-serif: Lato, sans-serif;
+
+  --font-serif: Rozha One, serif;
+}
+
+body{
+  background-color: #358e9d;
+  font-family: Lato, sans-serif;
+}
+nav {
+  /* margin: 0 !important; */
+
+  background-color:rgb(14, 73, 105);
+  color: rgb(244, 240, 229);
+  height: 60px;
+  display:flex;
+  flex-direction: row;
+  padding: 10px;
+  padding-left: 20px;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}
+#navLeft{
+  display: flex;
+  flex-direction: row;
+  font-family: Rozha, serif;
+  font-size: 50px;
+  gap: 20px;
+}
+.nav-link-group {
+  justify-content: end;
+  gap: 100px;
+}
+
+.navbar-link {
+  margin: 10px;
+  font-size: 18px;
+}
+/* .dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} */
