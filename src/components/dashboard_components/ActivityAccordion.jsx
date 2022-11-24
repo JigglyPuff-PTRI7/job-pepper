@@ -4,8 +4,11 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import TimePicker from './TimePicker';
 
-export default function ActivityAccordion() {
+export default function ActivityAccordion({ activity, index }) 
+{
+  const panel = `panel${index + 1}`;
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -15,25 +18,26 @@ export default function ActivityAccordion() {
   return (
     <div>
       <Accordion
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
+        expanded={expanded === `panel${index + 1}`}
+        onChange={handleChange(`panel${index + 1}`)}
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
+          aria-controls="panel1bh-content" 
           id="panel1bh-header"
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            Practice Algos
+            {activity}
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>Goal not set</Typography>
         </AccordionSummary>
         <AccordionDetails>
+          <TimePicker />
           <Typography>Render time input here </Typography>
           <Typography>List resouces here</Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion
+      {/* <Accordion
         expanded={expanded === 'panel2'}
         onChange={handleChange('panel2')}
       >
@@ -90,7 +94,7 @@ export default function ActivityAccordion() {
           <Typography>Render time input here </Typography>
           <Typography>List resouces here</Typography>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
     </div>
   );
 }
