@@ -8,6 +8,7 @@ import TimePicker from './TimePicker';
 import { Label, Link } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import { Button, Chip, Divider, FormControl, TextField } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function ActivityAccordion({ activitiesProps }) {
   console.log('activitiesProps', activitiesProps)
@@ -34,7 +35,7 @@ export default function ActivityAccordion({ activitiesProps }) {
     //update the supporting text with goal information
     let goalText = "";
     (goal && loggedHours) ?  goalText = `Completed ${totalHours} of ${goal} hours`
-    : goalText = "Goal not set... set a goal (make this a link)"
+    : goalText = "You have not set a goal yet. set a goal"
 
     //create a list of resources to render
     const resourceList = [];
@@ -56,7 +57,7 @@ export default function ActivityAccordion({ activitiesProps }) {
     console.log('resrouce list', resourceList)
 
     accordionSet.push(
-      <Accordion
+      <Accordion key={i.toString()}
         expanded={expanded === panelNum}
         onChange={handleChange(panelNum)}
       >
@@ -65,15 +66,26 @@ export default function ActivityAccordion({ activitiesProps }) {
           aria-controls={`${panelNum}bh-content`}
           id={`${panelNum}bh-header`}
         >
-          <Typography align='left' sx={{ fontWeight: 'bold', width: '33%', flexShrink: 0 }}>
+          <Typography
+            align="left"
+            sx={{ fontWeight: 'bold', width: '33%', flexShrink: 0 }}
+          >
             {activityName}
           </Typography>
           <Typography sx={{ color: '#E2C6AE', fontStyle: 'italic' }}>
             {goalText}
           </Typography>
+          <EditIcon key={i} fontSize="small" sx={{ color: '#E2C6AE', marginLeft:'10px'}} onClick={console.log('clicked edit pencil')}/>
         </AccordionSummary>
         <AccordionDetails>
-          <Box sx={{ display: 'flex', justifyContent:'center', alignItems: 'center', gap:'20px' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '20px',
+            }}
+          >
             <Typography>Log your progress:</Typography>
             <TimePicker />
           </Box>
@@ -81,7 +93,6 @@ export default function ActivityAccordion({ activitiesProps }) {
             <Typography fontWeight={'bold'}>Resources</Typography>
             <ul>{resourceList}</ul>
           </Box>
-         
         </AccordionDetails>
       </Accordion>
     );
