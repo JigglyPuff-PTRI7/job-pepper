@@ -5,7 +5,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TimePicker from './TimePicker';
-import { Link } from '@mui/icons-material';
+import { Label, Link } from '@mui/icons-material';
+import { Box } from '@mui/system';
+import { Button, Chip, Divider, FormControl, TextField } from '@mui/material';
 
 export default function ActivityAccordion({ activitiesProps }) {
   console.log('activitiesProps', activitiesProps)
@@ -63,103 +65,59 @@ export default function ActivityAccordion({ activitiesProps }) {
           aria-controls={`${panelNum}bh-content`}
           id={`${panelNum}bh-header`}
         >
-          <Typography sx={{fontWeight: 'bold', width: '33%', flexShrink: 0 }}>
+          <Typography align='left' sx={{ fontWeight: 'bold', width: '33%', flexShrink: 0 }}>
             {activityName}
           </Typography>
-          <Typography sx={{ color: 'text.secondary', fontStyle:'italic'}}>{goalText}</Typography>
+          <Typography sx={{ color: '#E2C6AE', fontStyle: 'italic' }}>
+            {goalText}
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>Log your progress:</Typography>
-          <TimePicker />
-          <Typography>Resources</Typography>
-          <ul>{resourceList}</ul>
+          <Box sx={{ display: 'flex', justifyContent:'center', alignItems: 'center', gap:'20px' }}>
+            <Typography>Log your progress:</Typography>
+            <TimePicker />
+          </Box>
+          <Box align="left">
+            <Typography fontWeight={'bold'}>Resources</Typography>
+            <ul>{resourceList}</ul>
+          </Box>
+         
         </AccordionDetails>
       </Accordion>
-    )
+    );
     }
     )
     console.log(accordionSet)
   return (
     <div>
-      {accordionSet}
-      {/* <Accordion
-        expanded={expanded === `panel${index+1}`}
-        onChange={handleChange(`panel${index+1}`)}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            {activity}
-          </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>Goal not set</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <TimePicker />
-          <Typography>Render time input here </Typography>
-          <Typography>List resouces here</Typography>
-        </AccordionDetails>
-      </Accordion> */}
-      {/* <Accordion
-        expanded={expanded === 'panel2'}
-        onChange={handleChange('panel2')}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2bh-content"
-          id="panel2bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>Read Tech News</Typography>
-          <Typography sx={{ color: 'text.secondary' }}>
-            Goal: 1 hour/week
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>Render time input here </Typography>
-          <Typography>List resouces here</Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === 'panel3'}
-        onChange={handleChange('panel3')}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3bh-content"
-          id="panel3bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            Apply for jobs
-          </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>
-            Goal time not set
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>Render time input here </Typography>
-          <Typography>List resouces here</Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === 'panel4'}
-        onChange={handleChange('panel4')}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel4bh-content"
-          id="panel4bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            Activity Name
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>Render time input here </Typography>
-          <Typography>List resouces here</Typography>
-        </AccordionDetails>
-      </Accordion> */}
+      <Box m={3}>{accordionSet}</Box>
+      <Divider mt={2}>
+        <Chip label="Missing something? Add what you want to track" />
+      </Divider>
+      <Box m={3} sx={{ gap: '20ox' }}>
+        <FormControl>
+          {/* <Typography>
+            Missing something? Add what you want to track:
+          </Typography> */}
+          <Box
+            mb={2}
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              gap: '20px',
+            }}
+          >
+            <TextField variant="standard" label="Add Activity"></TextField>
+            <TextField
+              variant="standard"
+              label="Goal Hours per Week"
+            ></TextField>
+          </Box>
+          <Button variant="outlined" size="small">
+            Let's track this!
+          </Button>
+        </FormControl>
+      </Box>
     </div>
   );
 }

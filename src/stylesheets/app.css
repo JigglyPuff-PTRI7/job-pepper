@@ -61,8 +61,11 @@ nav a {
   margin: 10px;
   font-size: 18px;
 }
-/* .dashboard {
+
+/* dashboard styling */
+.dashboard {
   display: flex;
   flex-direction: column;
   justify-content: center;
-} */
+  align-items: center;
+}

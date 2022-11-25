@@ -24,7 +24,7 @@ export default function App() {
   });
 
   const [existingUser, setExistingUser] = useState({
-    name: 'Tom',
+    name: 'Tom Nook',
     email: 'TomNook@Island.com',
     activities: [
       {

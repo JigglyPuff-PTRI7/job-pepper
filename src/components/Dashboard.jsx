@@ -1,12 +1,12 @@
 import React from "react";
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import ActivityAccordion from "./dashboard_components/ActivityAccordion";
 import GraphView from "./dashboard_components/GraphView";
 
 
 const Dashboard = ({ user, setUser }) => {
-    const { name, email } = { user }
+    const { name, email } = user
     const activities = user.activities
 
     console.log('user', user)
@@ -31,14 +31,19 @@ const Dashboard = ({ user, setUser }) => {
 
   return (
     <div className="dashboard">
-      Dashboard.jsx
-      <Container>
-        <GraphView />
-      </Container>
-      <Container>
-        <Box sx={{ width: '90%' }}>
-       <ActivityAccordion activitiesProps={activities}/>
-        </Box>
+      <Container align='center'>
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          m={2}
+          sx={{ color: '#869F1C', fontFamily: 'Rohza, serif' }}
+        >
+          Hello, {name}
+        </Typography>
+          <GraphView />
+          <Box sx={{ width: '90%' }}>
+            <ActivityAccordion activitiesProps={activities} />
+          </Box>
       </Container>
     </div>
   );
