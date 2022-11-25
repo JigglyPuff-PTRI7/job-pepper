@@ -31,8 +31,8 @@ export default function TimePicker() {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Twenty</MenuItem>
-            <MenuItem value={21}>Twenty one</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={20}>20</MenuItem>
             <MenuItem value={22}>Twenty one and a half</MenuItem>
           </Select>
         </FormControl>

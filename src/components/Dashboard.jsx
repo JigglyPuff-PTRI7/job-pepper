@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Button, Chip, Divider, FormControl, Paper, TextField, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import ActivityAccordion from "./dashboard_components/ActivityAccordion";
 import GraphView from "./dashboard_components/GraphView";
@@ -31,7 +31,7 @@ const Dashboard = ({ user, setUser }) => {
 
   return (
     <div className="dashboard">
-      <Container align='center'>
+      <Container align="center">
         <Typography
           variant="h4"
           fontWeight="bold"
@@ -40,10 +40,37 @@ const Dashboard = ({ user, setUser }) => {
         >
           Hello, {name}
         </Typography>
-          <GraphView />
-          <Box sx={{ width: '90%' }}>
-            <ActivityAccordion activitiesProps={activities} />
-          </Box>
+        <GraphView />
+        <Box sx={{ width: '90%' }}>
+          <ActivityAccordion activitiesProps={activities} />
+        </Box>
+        <Divider mt={2}>
+          <Chip label="Missing something? Add what you want to track" />
+        </Divider>
+        <Box m={3} sx={{ gap: '20ox' }}>
+          <FormControl>
+            {/* <Typography>
+            Missing something? Add what you want to track:
+          </Typography> */}
+            <Box
+              mb={2}
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                gap: '20px',
+              }}
+            >
+              <TextField variant="standard" label="Add Activity"></TextField>
+              <TextField
+                variant="standard"
+                label="Goal Hours per Week"
+              ></TextField>
+            </Box>
+            <Button variant="outlined" size="small">
+              Let's track this!
+            </Button>
+          </FormControl>
+        </Box>
       </Container>
     </div>
   );

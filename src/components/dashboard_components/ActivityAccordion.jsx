@@ -102,33 +102,7 @@ export default function ActivityAccordion({ activitiesProps }) {
   return (
     <div>
       <Box m={3}>{accordionSet}</Box>
-      <Divider mt={2}>
-        <Chip label="Missing something? Add what you want to track" />
-      </Divider>
-      <Box m={3} sx={{ gap: '20ox' }}>
-        <FormControl>
-          {/* <Typography>
-            Missing something? Add what you want to track:
-          </Typography> */}
-          <Box
-            mb={2}
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              gap: '20px',
-            }}
-          >
-            <TextField variant="standard" label="Add Activity"></TextField>
-            <TextField
-              variant="standard"
-              label="Goal Hours per Week"
-            ></TextField>
-          </Box>
-          <Button variant="outlined" size="small">
-            Let's track this!
-          </Button>
-        </FormControl>
-      </Box>
+      
     </div>
   );
 }
