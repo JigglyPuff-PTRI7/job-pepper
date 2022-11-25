@@ -9,6 +9,7 @@ import { Label, Link } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import { Button, Chip, Divider, FormControl, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import TimePickerComboBox from './TimePickerComboBox';
 
 export default function ActivityAccordion({ activitiesProps }) {
   console.log('activitiesProps', activitiesProps)
@@ -87,7 +88,8 @@ export default function ActivityAccordion({ activitiesProps }) {
             }}
           >
             <Typography>Log your progress:</Typography>
-            <TimePicker />
+            {/* <TimePicker /> */}
+            <TimePickerComboBox />
           </Box>
           <Box align="left">
             <Typography fontWeight={'bold'}>Resources</Typography>
