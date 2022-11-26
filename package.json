@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV=production webpack",
-    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot --progress --color \" \"nodemon ./src/server/server.js\""
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot --progress --color \" \"nodemon ./src/server/server.js\"",
+    "db": "psql -d postgres://cppfbmws:j0eul4IRFui524dYgL9D-iNz5XvJjDgj@peanut.db.elephantsql.com/cppfbmws -f src/server/db/postgres_create.sql"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,8 @@
     "@types/node": "^18.11.9",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.6.0",
     "html-webpack-plugin": "^5.5.0",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.8.0",
