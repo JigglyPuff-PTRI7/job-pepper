@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login.jsx";
+import Home from "./components/Home.jsx";
 import Navbar from "./components/Navbar";
 import "./stylesheets/app.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { Container } from "@mui/system";
 import { Paper } from "@mui/material";
 
 
 export default function App() {
+
+  const user = false;
+
+  
   const [sampleUserTemplate, setSampleUserTemplate] = useState({
     name: null,
     email: null,
@@ -18,7 +23,7 @@ export default function App() {
         totalHours: null,
         loggedHours: null,
         goal: null,
-        resources: null 
+        resources: null
       }
     ]
   });
@@ -77,16 +82,20 @@ export default function App() {
     <div className="app">
       <Container maxWidth="md">
         <Paper elevation={8}>
-          <Navbar />
+          <Navbar user = {user}/>
           <Container sx={{padding: '25px'}}>
             <Routes>
-              <Route path="/" element={<Login />} />
-              <Route
+              <Route path="/" element={<Home />} />
+               <Route path="/login" element={user ? <Navigate to="/" />:<Login />}
+               />
+               <Route path="/dashboard" element={user ? <Dashboard user={existingUser} setUser={setExistingUser} /> : <Navigate to="/Login" />}
+               />
+              {/* <Route
                 path="/dashboard"
                 element={
                   <Dashboard user={existingUser} setUser={setExistingUser} />
                 }
-              />
+              /> */}
             </Routes>
           </Container>
         </Paper>
