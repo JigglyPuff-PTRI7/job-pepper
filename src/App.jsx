@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login.jsx";
 import Home from "./components/Home.jsx";
@@ -11,9 +11,39 @@ import { Paper } from "@mui/material";
 
 export default function App() {
 
-  const user = false;
+ // const user = false;
 
-  
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+console.log('inside useEffect')
+    const getUser = () => {
+console.log('in getUser fxn');
+      fetch("http://localhost:3434/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+          console.log("response", response)
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
   const [sampleUserTemplate, setSampleUserTemplate] = useState({
     name: null,
     email: null,

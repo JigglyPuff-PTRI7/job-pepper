@@ -20,7 +20,7 @@ passport.use(new GoogleStrategy({
   },
   function(request,accessToken, refreshToken, profile, done) {
     // console.log("accessToken ", accessToken)
-    //  console.log("profile ", profile)
+     console.log("profile ", profile)
      //console.log("request ", request)
 
     return done(null, profile)
