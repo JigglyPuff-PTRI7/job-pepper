@@ -10,15 +10,12 @@ import { Paper } from "@mui/material";
 
 
 export default function App() {
-
- // const user = false;
-
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-console.log('inside useEffect')
+
     const getUser = () => {
-console.log('in getUser fxn');
+
       fetch("http://localhost:3434/auth/login/success", {
         method: "GET",
         credentials: "include",
@@ -29,12 +26,12 @@ console.log('in getUser fxn');
         },
       })
         .then((response) => {
-          console.log("response", response)
+
           if (response.status === 200) return response.json();
           throw new Error("authentication has been failed!");
         })
         .then((resObject) => {
-
+console.log("in getUser fxn", resObject)
           setUser(resObject.user);
         })
         .catch((err) => {
@@ -118,14 +115,9 @@ console.log('in getUser fxn');
               <Route path="/" element={<Home />} />
                <Route path="/login" element={user ? <Navigate to="/" />:<Login />}
                />
-               <Route path="/dashboard" element={user ? <Dashboard user={existingUser} setUser={setExistingUser} /> : <Navigate to="/Login" />}
+               <Route path="/dashboard" element={<Dashboard user={existingUser} setUser={setExistingUser} /> }
                />
-              {/* <Route
-                path="/dashboard"
-                element={
-                  <Dashboard user={existingUser} setUser={setExistingUser} />
-                }
-              /> */}
+
             </Routes>
           </Container>
         </Paper>

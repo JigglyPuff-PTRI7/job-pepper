@@ -6,10 +6,12 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 require('dotenv').config();
 passport.serializeUser(function (user, done) {
+
   done(null, user);
 });
 
 passport.deserializeUser(function (user, done) {
+  // when we get user back, insert db call to find by id
   done(null, user);
 });
 passport.use(new GoogleStrategy({
@@ -18,9 +20,9 @@ passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/callback",
     passReqToCallback: true
   },
-  function(request,accessToken, refreshToken, profile, done) {
+  function (request,accessToken, refreshToken, profile, done) {
+    //This gets fired upon return from google
     // console.log("accessToken ", accessToken)
-     console.log("profile ", profile)
      //console.log("request ", request)
 
     return done(null, profile)

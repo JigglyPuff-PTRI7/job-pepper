@@ -12,7 +12,7 @@
   --green-color: #869F1C;
 
   /* yellow  -- MUI 'warning' color*/
-  --yellow-color: #D9D36A; 
+  --yellow-color: #D9D36A;
 
   /* tan -- MUI 'info' color*/
   --tan-color: #E2C6AE;
@@ -60,6 +60,13 @@ nav a {
 .navbar-link {
   margin: 10px;
   font-size: 18px;
+}
+ .user-photo {
+  object-fit: contain;
+border-radius: 50%;
+width: 40px;
+height: auto;
+margin-right:10px;
 }
 /* .dashboard {
   display: flex;

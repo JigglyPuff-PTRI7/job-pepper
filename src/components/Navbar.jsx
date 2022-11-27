@@ -6,6 +6,12 @@ import logo from '../../public/assets/JobPepper_Logo.png';
 import { Typography } from "@mui/material";
 
 const Navbar = ({user}) => {
+
+  const logout = () => {
+
+    window.open("http://localhost:3434/auth/logout", "_self");
+  };
+
   return (
     <nav>
       <div id="navLeft">
@@ -18,9 +24,18 @@ const Navbar = ({user}) => {
       <div className="navbar-link-group">
         {/* if user is logged in, show logout button */}
         {
-          user ? ( <span className="navbar-link"> <span>John Doe</span>
+          user ? ( <span className="navbar-link">
+
+
+
+          <span> <img className="user-photo"
+              src={user.photos[0].value}
+              alt="user photo"
+            /> {user.displayName}</span>
           <span> | </span>
-          <Link to="/Logout">Logout</Link>
+           <span class="navbar-link" onClick={logout}>
+          Logout
+        </span>
         </span>) : (
           <span className="navbar-link">
           <Link to="/Login">Login</Link>

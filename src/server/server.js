@@ -16,23 +16,16 @@ const PORT = 3434;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-//What is this for?---cookie-session has a known issue with "regenerate"-->use"expression-sessionintead"
+//Removed ---cookie-session has a known issue with "regenerate"-->use"expression-sessionintead"
 //app.use(cookieSession({name:"session",keys:["lama"],maxAge: 24*60*60*100}))
 
-// This is the basic express session({..}) initialization.
-app.use(session({
-   secret: 'somethingsecretgoeshere',
-   resave: false,
-   saveUninitialized: false,
-   cookie: { secure: true }
-}));
-
-// app.use(
-//   cookieSession({
-//     name: "google-auth-session",
-//     keys: ["key1", "key2"],
-//   })
-// );
+app.use(
+  session({
+    secret:"secret-key",
+    resave:false,
+    saveUninitialized: false,
+  })
+);
 
 // init passport on every route call.
 app.use(passport.initialize())
@@ -57,7 +50,7 @@ app.use('*', (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  console.log(err.message, 'what');
+  console.log(err.message);
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 400,
