@@ -9,14 +9,14 @@
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const { GraphQLSchema } = require("graphql");
-const { mutation } = require("./graphql/mutations.js");
-const { query } = require("./graphql/queries.js");
+const RootMutation = require("./graphql/mutations.js");
+const RootQuery = require("./graphql/queries.js");
 const app = express();
 
 //define schema
 const schema = new GraphQLSchema({
-  query,
-  mutation,
+  query: RootQuery,
+  mutation: RootMutation,
 });
 //one route/entrypoint to graphql
 //each time a client interacting w/ our server wants to access graphql, they enter through this one route

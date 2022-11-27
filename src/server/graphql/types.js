@@ -10,7 +10,6 @@ const {
 //userType
 const userType = new GraphQLObjectType({
   name: "user",
-  type: "Query",
   fields: () => ({
     //use this type marker to enforce values are never null for id type request
     user_id: { type: GraphQLString },
@@ -22,7 +21,6 @@ const userType = new GraphQLObjectType({
 // //Activity Type
 const activityType = new GraphQLObjectType({
   name: "activity",
-  type: "Query",
   fields: () => ({
     pk_actvity_id: { type: GraphQLString },
     activity_name: { type: GraphQLString },
@@ -35,7 +33,6 @@ const activityType = new GraphQLObjectType({
 // //Resouce Type
 const resourceType = new GraphQLObjectType({
   name: "resource",
-  type: "Query",
   fields: () => ({
     pk_resouce_id: { type: GraphQLString },
     resource_name: { type: GraphQLString },

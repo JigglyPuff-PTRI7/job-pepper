@@ -70,12 +70,12 @@ const RootMutation = new GraphQLObjectType({
         }
       },
     },
-    updateActivity: {},
-    deleteActivity: {},
-    //CRUD - RESOURCES
-    addResource: {},
-    updateResource: {},
-    deleteResource: {},
+    // updateActivity: {},
+    // deleteActivity: {},
+    // //CRUD - RESOURCES
+    // addResource: {},
+    // updateResource: {},
+    // deleteResource: {}
   },
 });
 
