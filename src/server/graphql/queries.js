@@ -64,11 +64,14 @@ const RootQuery = new GraphQLObjectType({
             return res.rows;
           })
           .catch((err) => err);
-        // try {
-        //   const { rows } = db.query(text, values);
-        //   return rows;
-        // } catch (err) {
-        //   console.log(err);
+        //example query
+        // {
+        //   activities(id: "1") {
+        //     activity_name
+        //     total_hours
+        //     logged_hours
+        //     goal
+        //   }
         // }
       },
     },

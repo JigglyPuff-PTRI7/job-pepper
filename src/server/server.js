@@ -13,16 +13,6 @@ const { GraphQLSchema } = require("graphql");
 const RootMutation = require("./graphql/mutations.js");
 const RootQuery = require("./graphql/queries.js");
 const app = express();
-// const db = require("./db/connect.js");
-
-// let dbRes;
-// db.query("SELECT * from USERS WHERE user_id=$1", [1])
-//   .then((res) => {
-//     console.log("thenable babe!!");
-//     console.log("response is =>", res.rows);
-//     dbRes = res.rows[0];
-//   })
-//   .catch((err) => err);
 
 //define schema
 const schema = new GraphQLSchema({

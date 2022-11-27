@@ -84,9 +84,8 @@ CREATE TABLE "public".User_activities (
 INSERT INTO User_activities (user_id, activity_id)
 VALUES (1, 3);
 
-select * from user_activities
-INSERT INTO User_activities (user_id, activity_id)
-VALUES (1, );
+select * from user_activities; 
+
 
 -- SELECT a.pk_activity_id, a.activity_name, a.total_hours, a.logged_hours, a.goal, u.user_name AS user
 -- FROM activities a
