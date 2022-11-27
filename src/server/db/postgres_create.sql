@@ -2,6 +2,7 @@
 DROP TABLE IF EXISTS Users cascade;
 DROP TABLE IF EXISTS Activities cascade;
 DROP TABLE IF EXISTS Resources cascade;
+DROP TABLE IF EXISTS User_activities cascade;
 
 CREATE TABLE "public".Users (
   user_id serial PRIMARY KEY,
@@ -72,9 +73,25 @@ INSERT INTO Resources (resource_name, url, date_added, fk_activity_id)
 VALUES ('Shopify Engineering Blog', 'wwww.shopify.com', current_timestamp, 3);
 
 -- SELECT * FROM Resources; -- GOOD
--- maybe need a junction table for the users
--- CREATE TABLE "public".User_activities (
---   user_id INT REFERENCES Users(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
---   activity_id INT REFERENCES Activities(pk_activity_id) ON UPDATE CASCADE,
---   CONSTRAINT user_activity_pk PRIMARY KEY (user_id, pk_activity_id) 
--- )
+-- maybe need a junction table for the user activies
+CREATE TABLE "public".User_activities (
+  user_id INT REFERENCES Users(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+  activity_id INT REFERENCES Activities(pk_activity_id) ON UPDATE CASCADE,
+  -- pk_user_activity serial NOT NULL
+  PRIMARY KEY (user_id, activity_id)
+);
+
+INSERT INTO User_activities (user_id, activity_id)
+VALUES (1, 3);
+
+select * from user_activities
+INSERT INTO User_activities (user_id, activity_id)
+VALUES (1, );
+
+-- SELECT a.pk_activity_id, a.activity_name, a.total_hours, a.logged_hours, a.goal, u.user_name AS user
+-- FROM activities a
+-- LEFT JOIN user_activities ua
+-- ON a.pk_activity_id = ua.activity_id
+-- LEFT JOIN users u
+-- ON u.user_id = ua.user_id
+

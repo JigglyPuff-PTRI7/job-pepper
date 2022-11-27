@@ -8,8 +8,16 @@
 //test with graphiql
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
-const schema = require("./graphql/schema.js");
+const { GraphQLSchema } = require("graphql");
+const { mutation } = require("./graphql/mutations.js");
+const { query } = require("./graphql/queries.js");
 const app = express();
+
+//define schema
+const schema = new GraphQLSchema({
+  query,
+  mutation,
+});
 //one route/entrypoint to graphql
 //each time a client interacting w/ our server wants to access graphql, they enter through this one route
 app.use(
