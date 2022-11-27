@@ -78,3 +78,5 @@ const RootMutation = new GraphQLObjectType({
     deleteResource: {},
   },
 });
+
+module.exports = RootMutation;

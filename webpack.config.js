@@ -73,9 +73,10 @@ module.exports = {
     compress: false,
     port: 8080,
     historyApiFallback: true,
+    //need to change the proxy to '/graphql in order to render the graphi GUI
     proxy: {
-      "/api": {
-        target: "http://localhost:3000/",
+      "/graphql": {
+        target: "http://localhost:3000",
         secure: false,
       },
     },
