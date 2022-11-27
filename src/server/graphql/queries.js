@@ -25,18 +25,23 @@ const RootQuery = new GraphQLObjectType({
       //context - obj passed through resolver chain (think, res.locals w/ express middleware)
       resolve(parentVal, args) {
         //use resolver to make query to our db
-        const text = "SELECT * FROM users WHERE id=$1";
+        const text = "SELECT * FROM users WHERE user_id=$1";
         const values = [args.id];
-        try {
-          const { rows } = db.query(text, values);
-          const user = rows[0];
-          return user;
-        } catch (err) {
-          return next({
-            log: "getUser",
-            message: { err },
-          });
-        }
+        return db
+          .query(text, values)
+          .then((res) => {
+            console.log("thenable!!");
+            console.log("response is =>", res.rows[0]);
+            return res.rows[0];
+          })
+          .catch((err) => err);
+        //EXAMPLE QUERY
+        // {
+        //   user(id: "2") {
+        //     user_name
+        //     email
+        //   }
+        // }
       },
     },
     //grab all of the individual user's activites using their unqique id
@@ -51,15 +56,20 @@ const RootQuery = new GraphQLObjectType({
         const text =
           "SELECT a.pk_activity_id, a.activity_name, a.total_hours, a.logged_hours, a.goal, u.user_name AS user FROM activities a LEFT JOIN user_activities ua ON a.pk_activity_id = ua.activity_id LEFT JOIN users u ON u.user_id = ua.user_id WHERE ua.user_id=$1";
         const values = [args.id];
-        try {
-          const { rows } = db.query(text, values);
-          return rows;
-        } catch (err) {
-          return next({
-            log: "getUser",
-            message: { err },
-          });
-        }
+        return db
+          .query(text, values)
+          .then((res) => {
+            console.log("thenable!!");
+            console.log("response is =>", res.rows);
+            return res.rows;
+          })
+          .catch((err) => err);
+        // try {
+        //   const { rows } = db.query(text, values);
+        //   return rows;
+        // } catch (err) {
+        //   console.log(err);
+        // }
       },
     },
   },

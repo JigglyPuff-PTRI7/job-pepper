@@ -32,10 +32,7 @@ const RootMutation = new GraphQLObjectType({
           const newUser = rows[0];
           return newUser;
         } catch (err) {
-          return next({
-            log: "addUser",
-            message: { err },
-          });
+          console.log(err);
         }
       },
     },
@@ -63,10 +60,7 @@ const RootMutation = new GraphQLObjectType({
           //can return the activity name?
           return activity;
         } catch (err) {
-          return next({
-            log: "addActivity",
-            message: { err },
-          });
+          console.log(err);
         }
       },
     },

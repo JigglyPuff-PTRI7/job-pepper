@@ -6,12 +6,23 @@
 //MOCK REST API - in this case will act as our DB, so think POSTGRESQL here
 //crud functionality
 //test with graphiql
+require("dotenv").config();
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const { GraphQLSchema } = require("graphql");
 const RootMutation = require("./graphql/mutations.js");
 const RootQuery = require("./graphql/queries.js");
 const app = express();
+// const db = require("./db/connect.js");
+
+// let dbRes;
+// db.query("SELECT * from USERS WHERE user_id=$1", [1])
+//   .then((res) => {
+//     console.log("thenable babe!!");
+//     console.log("response is =>", res.rows);
+//     dbRes = res.rows[0];
+//   })
+//   .catch((err) => err);
 
 //define schema
 const schema = new GraphQLSchema({
