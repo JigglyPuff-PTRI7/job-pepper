@@ -1,14 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login.jsx";
+import Home from "./components/Home.jsx";
 import Navbar from "./components/Navbar";
 import "./stylesheets/app.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { Container } from "@mui/system";
 import { Paper } from "@mui/material";
 
 
 export default function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+
+    const getUser = () => {
+
+      fetch("http://localhost:3434/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+console.log("in getUser fxn", resObject)
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
   const [sampleUserTemplate, setSampleUserTemplate] = useState({
     name: null,
     email: null,
@@ -18,7 +50,7 @@ export default function App() {
         totalHours: null,
         loggedHours: null,
         goal: null,
-        resources: null 
+        resources: null
       }
     ]
   });
@@ -77,16 +109,15 @@ export default function App() {
     <div className="app">
       <Container maxWidth="md">
         <Paper elevation={8}>
-          <Navbar />
+          <Navbar user = {user}/>
           <Container sx={{padding: '25px'}}>
             <Routes>
-              <Route path="/" element={<Login />} />
-              <Route
-                path="/dashboard"
-                element={
-                  <Dashboard user={existingUser} setUser={setExistingUser} />
-                }
-              />
+              <Route path="/" element={<Home />} />
+               <Route path="/login" element={user ? <Navigate to="/" />:<Login />}
+               />
+               <Route path="/dashboard" element={<Dashboard user={existingUser} setUser={setExistingUser} /> }
+               />
+
             </Routes>
           </Container>
         </Paper>
