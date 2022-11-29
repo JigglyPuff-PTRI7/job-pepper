@@ -1,5 +1,4 @@
 const db = require("../db/connect.js");
-const graphql = require("graphql");
 const {
   GraphQLObjectType,
   GraphQLString,
@@ -9,11 +8,6 @@ const {
   GraphQLNonNull,
 } = require("graphql");
 
-const { GraphQLJSON } = require("graphql-type-json");
-
-const stringify = (input) => {
-  return JSON.stringify(input).replace(/"([^"]+)":/g, "$1:");
-};
 const { userType, activityType, resourceType } = require("./types.js");
 
 const RootMutation = new GraphQLObjectType({
@@ -55,19 +49,18 @@ const RootMutation = new GraphQLObjectType({
       args: {
         activity_name: { type: GraphQLString },
         total_hours: { type: GraphQLInt },
-        logged_hours: { type: GraphQLJSON },
+        logged_hours: { type: GraphQLInt },
         goal: { type: GraphQLInt },
       },
       resolve(parentVal, args) {
         const text =
-          "INSERT INTO Activities (activity_name, total_hours, logged_hours, goal) VALUES ($1, $2, $3, $4) RETURNING *";
-        const loggedHrs = stringify(args.logged_hours);
+          "INSERT INTO Activities (activity_name, total_hours, logged_hours, last_logged, goal) VALUES ($1, $2, $3, $4) RETURNING *";
         console.log(loggedHrs);
         const values = [
           args.activity_name,
           args.total_hours,
-          // args.logged_hours,
-          loggedHrs,
+          args.logged_hours,
+          current_timestamp(),
           args.goal,
         ];
         return db

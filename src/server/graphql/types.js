@@ -6,8 +6,6 @@ const {
   GraphQLList,
   GraphQLNonNull,
 } = require("graphql");
-//had to download this package in order to properly type the logged_hours proprty in our activities tables
-const { GraphQLJSON } = require("graphql-type-json");
 
 //make the individual types of users, activites, and resources match the type of the tables in postgres to allow graphql to work with the data queried from the tables
 //userType
@@ -18,7 +16,7 @@ const userType = new GraphQLObjectType({
     user_id: { type: GraphQLString },
     user_name: { type: GraphQLString },
     email: { type: GraphQLString },
-    password: { type: GraphQLString },
+    googleID: { type: GraphQLString },
   }),
 });
 // //Activity Type
@@ -28,8 +26,8 @@ const activityType = new GraphQLObjectType({
     pk_actvity_id: { type: GraphQLString },
     activity_name: { type: GraphQLString },
     total_hours: { type: GraphQLInt },
-    //tbh not sure about this, when we make a query to a value that has a json data type, will it come back stringified or not?
-    logged_hours: { type: GraphQLJSON },
+    logged_hours: { type: GraphQLInt },
+    last_logged: { type: GraphQLString },
     goal: { type: GraphQLInt },
   }),
 });

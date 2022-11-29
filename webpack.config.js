@@ -78,7 +78,7 @@ module.exports = {
     //backend on 3000 port
     proxy: {
       "/graphql": {
-        target: "http://localhost:3000",
+        target: "http://localhost:3434",
         secure: false,
       },
     },

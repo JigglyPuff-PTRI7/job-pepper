@@ -7,24 +7,25 @@ DROP TABLE IF EXISTS User_activities cascade;
 CREATE TABLE "public".Users (
   user_id serial PRIMARY KEY,
   email varchar(50) UNIQUE NOT NULL,
-  user_name varchar(50) NULL,
-  password varchar NOT NULL
+  user_name varchar(50) NOT NULL,
+  -- password varchar NULL,
+  googleID varchar UNIQUE NOT NULL
 );
 
-INSERT INTO users (email, user_name, password)
+INSERT INTO users (email, user_name, googleID)
 VALUES ('imma@email.com','Imma', '0000');
 
-INSERT INTO users (email, user_name, password)
+INSERT INTO users (email, user_name, googleID)
 VALUES ('regina@email.com','Regina', '1111');
 
-INSERT INTO users (email, user_name, password)
+INSERT INTO users (email, user_name, googleID)
 VALUES ('dwayne@email.com','Dwayne', '2222');
 
-INSERT INTO users (email, user_name, password)
+INSERT INTO users (email, user_name, googleID)
 VALUES ('sabre@email.com','Sabre', '3333');
 
-INSERT INTO users (email, user_name, password)
-VALUES ('test@email.com','Test', '1111');
+INSERT INTO users (email, user_name, googleID)
+VALUES ('test@email.com','Test', '4444');
 
 -- SELECT * FROM  Users;  -- GOOD
 
@@ -32,24 +33,19 @@ CREATE TABLE "public".Activities (
   pk_activity_id SERIAL PRIMARY KEY,
   activity_name varchar NOT NULL,
   total_hours INTEGER NULL,
-  -- example json obj for logged hours:
-  -- const algos = {
-  --   loggedHours: 3,
-  --   date: new Date
-  -- }
-  --text data type
-  logged_hours jsonb NULL,
+  logged_hours INTEGER NULL,
+  last_logged timestamp NULL,
   goal INTEGER NULL
 );
 
-INSERT INTO Activities (activity_name, total_hours, logged_hours, goal)
-VALUES ('Practicing Algos', 50, '{"loggedHours": "2", "date": "01/11/11"}', 20);
+INSERT INTO Activities (activity_name, total_hours, logged_hours, last_logged, goal)
+VALUES ('Practicing Algos', 50, 1, current_timestamp, 20);
 
-INSERT INTO Activities (activity_name, total_hours, logged_hours, goal)
-VALUES ('Resume Review', 50, '{"loggedHours": "4", "date": "02/22/22"}', 20);
+INSERT INTO Activities (activity_name, total_hours, logged_hours, last_logged, goal)
+VALUES ('Resume Review', 50, 4, current_timestamp, 20);
 
-INSERT INTO Activities (activity_name, total_hours, logged_hours, goal)
-VALUES ('Reading Tech News', 12, '{"loggedHours": "1", "date": "03/30/13"}', 20);
+INSERT INTO Activities (activity_name, total_hours, logged_hours, last_logged, goal)
+VALUES ('Reading Tech News', 12, 2, current_timestamp, 20);
 
 SELECT * FROM  Activities; -- GOOD
 

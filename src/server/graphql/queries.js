@@ -37,7 +37,7 @@ const RootQuery = new GraphQLObjectType({
           .catch((err) => console.log(err));
         //EXAMPLE QUERY
         // {
-        //   user(id: "2") {
+        //   user(id: "1") {
         //     user_name
         //     email
         //   }
