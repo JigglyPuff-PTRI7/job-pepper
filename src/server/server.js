@@ -6,6 +6,8 @@
 //MOCK REST API - in this case will act as our DB, so think POSTGRESQL here
 //crud functionality
 //test with graphiql
+
+//
 require("dotenv").config();
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
@@ -45,7 +47,6 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-//we only have one route for graphQL
 app.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });
