@@ -29,7 +29,7 @@ const Navbar = ({ user }) => {
           <span className="navbar-link">
             <span>{user.user_name}</span>
             <span> | </span>
-            <span class="navbar-link" onClick={logout}>
+            <span className="navbar-link" onClick={logout}>
               Logout
             </span>
           </span>

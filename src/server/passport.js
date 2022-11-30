@@ -23,12 +23,12 @@ passport.deserializeUser(function (userGoogleID, done) {
   const values = [userGoogleID];
   db.query(text, values)
     .then((res) => {
-      console.log("same user in deserialized!");
+      console.log(res.rows[0]);
       done(null, res.rows[0]);
     })
     .catch((err) => console.log(err));
-  done(null, user);
 });
+
 passport.use(
   //called after user selects their login email from the front-end or Google auth
   new GoogleStrategy(

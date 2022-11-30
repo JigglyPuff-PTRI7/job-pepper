@@ -7,12 +7,12 @@ import "./stylesheets/app.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { Container } from "@mui/system";
 import { Paper } from "@mui/material";
-import { useQuery, gql } from "@apollo/client";
 
 export default function App() {
   const [user, setUser] = useState(null);
   useEffect(() => {
     const getUser = () => {
+      console.log("getting user...");
       fetch("http://localhost:3434/auth/login/success", {
         method: "GET",
         credentials: "include",
@@ -20,6 +20,8 @@ export default function App() {
           Accept: "application/json",
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Access-Control-Allow-Origin": "http://127.0.0.1:8080",
         },
       })
         .then((response) => {
@@ -35,7 +37,7 @@ export default function App() {
           //   googleID: '123425323452345'
           // }
           console.log("in getUser fxn", resObject);
-          // setUser(resObject.user);
+          setUser(resObject.user);
         })
         .catch((err) => {
           console.log(err);
@@ -44,6 +46,7 @@ export default function App() {
     getUser();
   }, []);
 
+  //GRAPHQL Client
   // const getUser = gql`
   //   query getUser {
   //     getUser(id: "1") {
@@ -53,12 +56,9 @@ export default function App() {
   //     }
   //   }
   // `;
-
   // const { loading, error, data } = useQuery(getUser);
-
   // if (loading) return <p>Loading...</p>;
   // if (error) return <p>Error : {error.message}</p>;
-
   // console.log("data", data);
   // if (data) {
   //   console.log("data obj is ", data.getUser);
@@ -79,55 +79,54 @@ export default function App() {
   //   ],
   // });
 
-  // const [existingUser, setExistingUser] = useState({
-  //   name: "Tom",
-  //   email: "TomNook@Island.com",
-  //   activities: [
-  //     {
-  //       activity: "Practice Algos",
-  //       totalHours: 3.75,
-  //       loggedHours: [
-  //         { hours: 1, date: "date1" },
-  //         { hours: 0.25, date: "date2" },
-  //         { hours: 0.5, date: "date3" },
-  //         { hours: 2, date: "date4" },
-  //       ],
-  //       goal: 5,
-  //       resources: null,
-  //     },
-  //     {
-  //       activity: "Read Tech News",
-  //       totalHours: 3.5,
-  //       loggedHours: [
-  //         { hours: 0.25, date: "date1" },
-  //         { hours: 1, date: "date2" },
-  //         { hours: 0.5, date: "date3" },
-  //         { hours: 0.75, date: "date4" },
-  //       ],
-  //       goal: 3,
-  //       resources: [
-  //         {
-  //           resource_name: "Medium",
-  //           url: "https://medium.com",
-  //           date_added: "date",
-  //         },
-  //         {
-  //           resource_name: "LeetCode",
-  //           url: "https://leetcode.com",
-  //           date_added: "date",
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       activity: "Mock Interview",
-  //       totalHours: null,
-  //       loggedHours: null,
-  //       goal: null,
-  //       resources: null,
-  //     },
-  //   ],
-  // });
-
+  const [existingUser, setExistingUser] = useState({
+    name: "Tom",
+    email: "TomNook@Island.com",
+    activities: [
+      {
+        activity: "Practice Algos",
+        totalHours: 3.75,
+        loggedHours: [
+          { hours: 1, date: "date1" },
+          { hours: 0.25, date: "date2" },
+          { hours: 0.5, date: "date3" },
+          { hours: 2, date: "date4" },
+        ],
+        goal: 5,
+        resources: null,
+      },
+      {
+        activity: "Read Tech News",
+        totalHours: 3.5,
+        loggedHours: [
+          { hours: 0.25, date: "date1" },
+          { hours: 1, date: "date2" },
+          { hours: 0.5, date: "date3" },
+          { hours: 0.75, date: "date4" },
+        ],
+        goal: 3,
+        resources: [
+          {
+            resource_name: "Medium",
+            url: "https://medium.com",
+            date_added: "date",
+          },
+          {
+            resource_name: "LeetCode",
+            url: "https://leetcode.com",
+            date_added: "date",
+          },
+        ],
+      },
+      {
+        activity: "Mock Interview",
+        totalHours: null,
+        loggedHours: null,
+        goal: null,
+        resources: null,
+      },
+    ],
+  });
   return (
     <div className="app">
       <Container maxWidth="md">
@@ -140,12 +139,10 @@ export default function App() {
                 path="/login"
                 element={user ? <Navigate to="/" /> : <Login />}
               />
-              {/* <Route
+              <Route
                 path="/dashboard"
-                element={
-                  <Dashboard user={existingUser} setUser={setExistingUser} />
-                }
-              /> */}
+                element={<Dashboard user={user} setUser={setUser} />}
+              />
             </Routes>
           </Container>
         </Paper>
