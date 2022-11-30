@@ -13,7 +13,7 @@ const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   type: "Query",
   fields: {
-    user: {
+    getUser: {
       type: userType,
       args: {
         id: { type: GraphQLString },
@@ -37,7 +37,7 @@ const RootQuery = new GraphQLObjectType({
           .catch((err) => console.log(err));
         //EXAMPLE QUERY
         // {
-        //   user(id: "1") {
+        //   getUser(id: "1") {
         //     user_name
         //     email
         //   }
@@ -45,7 +45,7 @@ const RootQuery = new GraphQLObjectType({
       },
     },
     //grab all of the individual user's activites using their unqique id
-    activities: {
+    getActivities: {
       type: new GraphQLList(activityType),
       //this will have to be the userID sub
       args: {
@@ -53,6 +53,7 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parentVal, args) {
         //returning the select all query from activities
+        //UPDATE QUERY WITH NEW PROPS
         const text =
           "SELECT a.pk_activity_id, a.activity_name, a.total_hours, a.logged_hours, a.goal, u.user_name AS user FROM activities a LEFT JOIN user_activities ua ON a.pk_activity_id = ua.activity_id LEFT JOIN users u ON u.user_id = ua.user_id WHERE ua.user_id=$1";
         const values = [args.id];
@@ -66,7 +67,7 @@ const RootQuery = new GraphQLObjectType({
           .catch((err) => err);
         //example query
         // {
-        //   activities(id: "1") {
+        //   getActivities(id: "1") {
         //     activity_name
         //     total_hours
         //     logged_hours

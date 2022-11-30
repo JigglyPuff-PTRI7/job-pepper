@@ -7,10 +7,10 @@ import "./stylesheets/app.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { Container } from "@mui/system";
 import { Paper } from "@mui/material";
+import { useQuery, gql } from "@apollo/client";
 
 export default function App() {
   const [user, setUser] = useState(null);
-
   useEffect(() => {
     const getUser = () => {
       fetch("http://localhost:3434/auth/login/success", {
@@ -35,7 +35,7 @@ export default function App() {
           //   googleID: '123425323452345'
           // }
           console.log("in getUser fxn", resObject);
-          setUser(resObject.user);
+          // setUser(resObject.user);
         })
         .catch((err) => {
           console.log(err);
@@ -44,68 +44,89 @@ export default function App() {
     getUser();
   }, []);
 
-  const [sampleUserTemplate, setSampleUserTemplate] = useState({
-    name: null,
-    email: null,
-    activities: [
-      {
-        activity: null,
-        totalHours: null,
-        loggedHours: null,
-        goal: null,
-        resources: null,
-      },
-    ],
-  });
+  // const getUser = gql`
+  //   query getUser {
+  //     getUser(id: "1") {
+  //       user_id
+  //       user_name
+  //       email
+  //     }
+  //   }
+  // `;
 
-  const [existingUser, setExistingUser] = useState({
-    name: "Tom",
-    email: "TomNook@Island.com",
-    activities: [
-      {
-        activity: "Practice Algos",
-        totalHours: 3.75,
-        loggedHours: [
-          { hours: 1, date: "date1" },
-          { hours: 0.25, date: "date2" },
-          { hours: 0.5, date: "date3" },
-          { hours: 2, date: "date4" },
-        ],
-        goal: 5,
-        resources: null,
-      },
-      {
-        activity: "Read Tech News",
-        totalHours: 3.5,
-        loggedHours: [
-          { hours: 0.25, date: "date1" },
-          { hours: 1, date: "date2" },
-          { hours: 0.5, date: "date3" },
-          { hours: 0.75, date: "date4" },
-        ],
-        goal: 3,
-        resources: [
-          {
-            resource_name: "Medium",
-            url: "https://medium.com",
-            date_added: "date",
-          },
-          {
-            resource_name: "LeetCode",
-            url: "https://leetcode.com",
-            date_added: "date",
-          },
-        ],
-      },
-      {
-        activity: "Mock Interview",
-        totalHours: null,
-        loggedHours: null,
-        goal: null,
-        resources: null,
-      },
-    ],
-  });
+  // const { loading, error, data } = useQuery(getUser);
+
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error : {error.message}</p>;
+
+  // console.log("data", data);
+  // if (data) {
+  //   console.log("data obj is ", data.getUser);
+  //   // setUser(data.getUser);
+  // }
+
+  // const [sampleUserTemplate, setSampleUserTemplate] = useState({
+  //   name: null,
+  //   email: null,
+  //   activities: [
+  //     {
+  //       activity: null,
+  //       totalHours: null,
+  //       loggedHours: null,
+  //       goal: null,
+  //       resources: null,
+  //     },
+  //   ],
+  // });
+
+  // const [existingUser, setExistingUser] = useState({
+  //   name: "Tom",
+  //   email: "TomNook@Island.com",
+  //   activities: [
+  //     {
+  //       activity: "Practice Algos",
+  //       totalHours: 3.75,
+  //       loggedHours: [
+  //         { hours: 1, date: "date1" },
+  //         { hours: 0.25, date: "date2" },
+  //         { hours: 0.5, date: "date3" },
+  //         { hours: 2, date: "date4" },
+  //       ],
+  //       goal: 5,
+  //       resources: null,
+  //     },
+  //     {
+  //       activity: "Read Tech News",
+  //       totalHours: 3.5,
+  //       loggedHours: [
+  //         { hours: 0.25, date: "date1" },
+  //         { hours: 1, date: "date2" },
+  //         { hours: 0.5, date: "date3" },
+  //         { hours: 0.75, date: "date4" },
+  //       ],
+  //       goal: 3,
+  //       resources: [
+  //         {
+  //           resource_name: "Medium",
+  //           url: "https://medium.com",
+  //           date_added: "date",
+  //         },
+  //         {
+  //           resource_name: "LeetCode",
+  //           url: "https://leetcode.com",
+  //           date_added: "date",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       activity: "Mock Interview",
+  //       totalHours: null,
+  //       loggedHours: null,
+  //       goal: null,
+  //       resources: null,
+  //     },
+  //   ],
+  // });
 
   return (
     <div className="app">
@@ -119,12 +140,12 @@ export default function App() {
                 path="/login"
                 element={user ? <Navigate to="/" /> : <Login />}
               />
-              <Route
+              {/* <Route
                 path="/dashboard"
                 element={
                   <Dashboard user={existingUser} setUser={setExistingUser} />
                 }
-              />
+              /> */}
             </Routes>
           </Container>
         </Paper>

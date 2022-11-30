@@ -40,6 +40,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.1",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.15",
@@ -51,11 +52,11 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-graphql": "^0.12.0",
+    "express-session": "^1.17.3",
+    "file-loader": "^6.2.0",
     "graphiql": "^2.2.0",
     "graphql": "^16.6.0",
     "graphql-type-json": "^0.3.2",
-    "express-session": "^1.17.3",
-    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "jsonwebtoken": "^8.5.1",
     "passport": "^0.6.0",
