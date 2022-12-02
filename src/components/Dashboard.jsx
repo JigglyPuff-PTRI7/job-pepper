@@ -4,12 +4,11 @@ import { Container } from "@mui/system";
 import ActivityAccordion from "./dashboard_components/ActivityAccordion";
 import GraphView from "./dashboard_components/GraphView";
 import { useQuery, gql } from "@apollo/client";
-//WILL NEED TO INCLUDE A USE EFFECT TO RUN A REQ TO getActitivities
+
 const Dashboard = ({ user, setUser }) => {
-  console.log("user is =>", user);
-  // const { user_name, user_id, email } = { user };
-  console.log("user still is =>", user);
-  // console.log(currentUser.email);
+  // console.log("user is =>", user);
+  const { user_name, user_id, email } = { user };
+  //GRAPHQL ATTEMPT
   //GRAPHQL Client
   // const getActivities = gql`
   //   query getActivities {
@@ -21,18 +20,13 @@ const Dashboard = ({ user, setUser }) => {
   //   }
   // `;
   // const { loading, error, data } = useQuery(getActivities);
-
   // if (loading) return <p>Loading...</p>;
-
   // if (error) return <p>Error : {error.message}</p>;
-
   // console.log("data", data);
   // if (data) {
   //   console.log("data obj is ", data.getUser);
   // }
-
   // const activities = user.activities;
-
   // console.log("user", user);
   // console.log("activities", activities);
 
@@ -61,7 +55,7 @@ const Dashboard = ({ user, setUser }) => {
       </Container>
       <Container>
         <Box sx={{ width: "90%" }}>
-          {/* <ActivityAccordion activitiesProps={activities} /> */}
+          <ActivityAccordion activitiesProps={activities} />
         </Box>
       </Container>
     </div>
