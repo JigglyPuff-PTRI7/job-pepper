@@ -6,8 +6,10 @@ import GraphView from "./dashboard_components/GraphView";
 import { useQuery, gql } from "@apollo/client";
 
 const Dashboard = ({ user, setUser }) => {
-  // console.log("user is =>", user);
+  console.log("user is =>", user);
+  console.log('user id is =>', user.user_id)
   const { user_name, user_id, email } = { user };
+  const  { activities } =  user;
   //GRAPHQL ATTEMPT
   //GRAPHQL Client
   // const getActivities = gql`
